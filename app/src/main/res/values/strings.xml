@@ -1,13 +1,31 @@
 <resources>
-    <string name="app_name">SM_EJEMPLOS_TEMA3</string>
+    <string name="app_name">Ejemplos Tema 3</string>
+    <string name="app_author">Juan Carlos Cuevas Martínez</string>
+    <string name="app_affiliaton">Dpto. Ingeniería de Telecomunicación\nUniversidad de Jaén</string>
+
+    <string name="app_help">Ayuda</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="navbar_serviciosmoviles">Servicios Móviles</string>
     <string name="navbar_title">Ejemplos Tema 3</string>
+    <string name="navbar_section_info">Información</string>
+    <string name="navmenu_help">Ayuda</string>
+    <string name="navmenu_about">Acerca de...</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_help">Ayuda</string>
 
     <string name="contentdescription_logouja">Logo UJA</string>
+
+    <string name="help_title">Ayuda de la aplicación de ejemplos</string>
+    <string name="help_text">Esta es una aplicación para mostrar los ejemplos de clase de la asignatura Servicios Móviles del Grado de Ingeniería Telemática de la Universidad de Jaén</string>
+
+
+    <string name="fragment_bt_error_nobt">El dispositivo no tiene una interfaz BlueTooth</string>
+    <string name="fragment_bt_error_user">No se ha activado la interfaz Bluetooth</string>
+    <string name="fragment_bt_title">Búsqueda de dispositivos BlueTooth</string>
+    <string name="fragment_bt_search">Buscar</string>
+    <string name="fragment_bt_discovering">Calma, aún estoy mirando...</string>
+    <string name="nav_bluetooth_title">Ejemplo de Bluetooth</string>
 </resources>
