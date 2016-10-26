@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SM_EJEMPLOS_TEMA3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="navbar_serviciosmoviles">Servicios Móviles</string>
+    <string name="navbar_title">Ejemplos Tema 3</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="contentdescription_logouja">Logo UJA</string>
+</resources>
