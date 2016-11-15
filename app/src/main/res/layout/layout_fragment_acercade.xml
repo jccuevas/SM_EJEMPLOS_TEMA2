@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+
+    tools:context="es.ujaen.ejemplostema2.FragmentoAcercade"
+    android:background="@drawable/shape_background"
+    android:id="@+id/fragment_acercade_root">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_uja"
+        android:id="@+id/imageView"
+        android:contentDescription="@string/contentdescription_logouja"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/fragment_acercade_titulo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"/>
+
+    <TextView
+        android:text="@string/app_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_acercade_author"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_below="@+id/fragment_acercade_helptext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"/>
+    <TextView
+        android:text="@string/app_affiliaton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_acercade_afiliacion"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/fragment_acercade_author"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+        android:layout_marginRight="@dimen/fragment_horizontal_margin"
+        tools:text="@string/app_affiliaton" />
+
+    <TextView
+        android:id="@+id/fragment_acercade_helptext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_below="@+id/fragment_acercade_titulo"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal" />
+
+</RelativeLayout>
