@@ -9,4 +9,7 @@
     <dimen name="fragment_vertical_margin">8dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="very_small_padding">4dp</dimen>
 </resources>

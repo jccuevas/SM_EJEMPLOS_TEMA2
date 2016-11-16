@@ -13,7 +13,8 @@
     <string name="navbar_section_info">Información</string>
     <string name="navmenu_help">Ayuda</string>
     <string name="navmenu_about">Acerca de...</string>
-
+    <string name="nav_bluetooth_title">Ejemplo de Bluetooth</string>
+    <string name="nav_wifi_title">Ejemplo sobre WIFI</string>
     <string name="action_help">Ayuda</string>
 
     <string name="contentdescription_logouja">Logo UJA</string>
@@ -27,8 +28,20 @@
     <string name="fragment_bt_title">Búsqueda de dispositivos BlueTooth</string>
     <string name="fragment_bt_search">Buscar</string>
     <string name="fragment_bt_discovering">Calma, aún estoy mirando...</string>
-    <string name="nav_bluetooth_title">Ejemplo de Bluetooth</string>
+
     <string name="bluetooth_server_start">Iniciar servidor</string>
     <string name="bluetooth_server_stop">Parar servidor</string>
     <string name="bluetooth_send">Enviar</string>
+
+
+    <string name="connectivity_scan">Buscar</string>
+    <string name="connectivity_result">resultado&#8230;</string>
+    <string name="connectivity_code_startscan">Buscando wifi&#8230;</string>
+    <string name="menu_connectivity_description">En este ejemplo se mostrará una lista con las redes wifi que están registradas en el dispositivo, así como posibilitar un escaneo de las redes wifi dentro del alcance.</string>
+    <string name="menu_connectivity_networking">En este ejemplo se muestran diferentes formas de conexión a un recurso remoto, como a través de la clase HttpUrlConnection, sockets. Se muestra también la forma de crear tareas asíncronas y un ejemplo de Servicio</string>
+    <string name="connectivity_netlist">Lista de redes almacenada en el dispositivo</string>
+    <string name="wifipower_ssid">SSID</string>
+    <string name="wifipower_dbm">dBm</string>
+    <string name="connectivity_search">Buscar redes</string>
+    <string name="wifipower_hz">Hz</string>
 </resources>

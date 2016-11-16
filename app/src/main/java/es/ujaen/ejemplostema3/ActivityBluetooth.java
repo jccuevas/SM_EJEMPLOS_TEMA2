@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,7 +60,7 @@ public class ActivityBluetooth extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bluetooth);
+        setContentView(R.layout.layout_activity_bluetooth);
 
         mHandler = new Handler() {
             @Override

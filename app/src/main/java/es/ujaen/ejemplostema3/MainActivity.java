@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -112,10 +110,7 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main, menu);
 
         boolean result = super.onCreateOptionsMenu(menu);
-        SubMenu fileMenu = menu.addSubMenu("File");
-        fileMenu.add("new");
-        fileMenu.add("open");
-        fileMenu.add("save");
+
         return result;
 
 
@@ -157,7 +152,10 @@ public class MainActivity extends AppCompatActivity
             Intent btactivity= new Intent(this,ActivityBluetooth.class);
             startActivity(btactivity);
         }
-
+        if (id == R.id.nav_wifipower) {//Opción mostrar fragmento de manejo de Bluetooth
+            Intent wifiactivity= new Intent(this,Connectivity.class);
+            startActivity(wifiactivity);
+        }
 
 
 
