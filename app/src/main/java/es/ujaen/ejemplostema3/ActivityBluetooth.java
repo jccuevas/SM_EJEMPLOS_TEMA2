@@ -1,6 +1,7 @@
 package es.ujaen.ejemplostema3;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
@@ -104,7 +105,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                             e.printStackTrace();
                         } finally {
                             mSocket = null;
-                            mBTClient=null;
+                            mBTClient = null;
                         }
                     }
                 }
@@ -164,7 +165,18 @@ public class ActivityBluetooth extends AppCompatActivity {
                     // Add the name and address to an array adapter to show in a ListView
                     String deviceName = device.getName();
                     String deviceAddress = device.getAddress();
-                    mArrayAdapter.add(deviceName + "\nMAC=" + deviceAddress);
+
+                    String line = deviceName + "\nMAC=" + deviceAddress + "\n";
+                    BluetoothClass clase = device.getBluetoothClass();
+                    if (clase.hasService(BluetoothClass.Service.AUDIO))
+                        line = line + "AUDIO ";
+                    if (clase.hasService(BluetoothClass.Service.NETWORKING))
+                        line = line + "NETWORKING ";
+                    if (clase.hasService(BluetoothClass.Service.TELEPHONY))
+                        line = line + "TELEPHONY ";
+                    if (clase.hasService(BluetoothClass.Service.OBJECT_TRANSFER))
+                        line = line + "OBJECT TRANSFER ";
+                    mArrayAdapter.add(line);
                     mArrayAdapter.notifyDataSetChanged();
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
@@ -411,7 +423,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 Log.e("ActivityBluetooth", e.getMessage());
             }
             mmInStream = tmpIn;
-            mmOutStream= tmpOut;
+            mmOutStream = tmpOut;
         }
 
         public void run() {
