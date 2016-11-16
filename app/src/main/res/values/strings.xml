@@ -28,4 +28,7 @@
     <string name="fragment_bt_search">Buscar</string>
     <string name="fragment_bt_discovering">Calma, aún estoy mirando...</string>
     <string name="nav_bluetooth_title">Ejemplo de Bluetooth</string>
+    <string name="bluetooth_server_start">Iniciar servidor</string>
+    <string name="bluetooth_server_stop">Parar servidor</string>
+    <string name="bluetooth_send">Enviar</string>
 </resources>

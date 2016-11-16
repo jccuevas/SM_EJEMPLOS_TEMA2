@@ -24,22 +24,54 @@
         android:textColor="@android:color/background_light"
         android:id="@+id/bluetooth_title" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/bluetooth_list"
+        android:layout_above="@+id/bluetooth_send"
+        android:layout_below="@+id/bluetooth_search" />
+
+    <Button
+        android:text="@string/bluetooth_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bluetooth_send"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
     <Button
         android:text="@string/fragment_bt_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bluetooth_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="23dp"
         android:id="@+id/bluetooth_search"
-        android:onClick="onSearch"/>
+        android:onClick="onSearch"
+        android:layout_below="@+id/bluetooth_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/bluetooth_search"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/bluetooth_list"/>
+    <Button
+        android:text="@string/bluetooth_server_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bluetooth_server"
+        android:layout_above="@+id/bluetooth_list"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/bluetooth_text"
+        android:inputType="text"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/bluetooth_send"
+        android:layout_toStartOf="@+id/bluetooth_send" />
 
 
 </RelativeLayout>

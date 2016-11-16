@@ -3,7 +3,6 @@
     package="es.ujaen.ejemplostema3">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
@@ -22,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityBluetooth"></activity>
+        <activity android:name=".ActivityBluetooth" />
     </application>
 
 </manifest>
