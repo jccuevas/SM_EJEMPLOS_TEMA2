@@ -117,10 +117,7 @@ public class Connectivity extends AppCompatActivity {
     }
 
     public void onScan(View view) {
-
         checkCoarseLocation();
-
-
     }
 
     public void startScan(){
