@@ -90,7 +90,8 @@ public class ActivityBluetooth extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String mac = mArrayAdapter.getItem(position);
-                mac = mac.substring(mac.indexOf("MAC=") + 4);
+                mac = mac.substring(mac.indexOf("MAC=")+ "MAC=".length());
+                mac = mac.substring(0,mac.indexOf("\n"));
 
                 BluetoothDevice destino = mBTadapter.getRemoteDevice(mac);
                 if (destino != null) {
