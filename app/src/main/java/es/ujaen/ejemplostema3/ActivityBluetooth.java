@@ -28,6 +28,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ActivityBluetooth extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class ActivityBluetooth extends AppCompatActivity {
     private BluetoothAdapter mBTadapter = null;
     private ListView mDeviceList = null;
     private ArrayAdapter<String> mArrayAdapter = null;
+    private ArrayList<BluetoothDevice> mDevices=null;
     private Button mServerButton = null;
     public static final String[] DEFAULT_VALUES = new String[]{"no hay dispositivos"};
 
@@ -79,6 +81,7 @@ public class ActivityBluetooth extends AppCompatActivity {
         };
 
 
+        mDevices = new ArrayList<BluetoothDevice>(1);
         mBTadapter = BluetoothAdapter.getDefaultAdapter();
 
         mDeviceList = (ListView) findViewById(R.id.bluetooth_list);
@@ -90,25 +93,30 @@ public class ActivityBluetooth extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String mac = mArrayAdapter.getItem(position);
-                mac = mac.substring(mac.indexOf("MAC=")+ "MAC=".length());
-                mac = mac.substring(0,mac.indexOf("\n"));
+                BluetoothDevice bdtemp=mDevices.get(position);
+                if(bdtemp!=null) {
+                    mac = bdtemp.getAddress();//mac.substring(mac.indexOf("MAC=")+ "MAC=".length());
+                    //mac = mac.substring(0,mac.indexOf("\n"));
 
-                BluetoothDevice destino = mBTadapter.getRemoteDevice(mac);
-                if (destino != null) {
-                    if (mSocket == null) {
-                        Toast.makeText(ActivityBluetooth.this, "Emparejando con " + mac + "...", Toast.LENGTH_LONG).show();
-                        new ConnectThread(destino).start();
-                    } else {
-                        Toast.makeText(ActivityBluetooth.this, "Cerrando conexión con " + mac + "...", Toast.LENGTH_LONG).show();
-                        try {
-                            mSocket.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            mSocket = null;
-                            mBTClient = null;
+                    BluetoothDevice destino = mBTadapter.getRemoteDevice(mac);
+                    if (destino != null) {
+                        if (mSocket == null) {
+                            Toast.makeText(ActivityBluetooth.this, getString(R.string.fragment_bt_pairing)+ ": "+mac + "...", Toast.LENGTH_LONG).show();
+                            new ConnectThread(destino).start();
+                        } else {
+                            Toast.makeText(ActivityBluetooth.this, getString(R.string.fragment_bt_closing) + mac + "...", Toast.LENGTH_LONG).show();
+                            try {
+                                mSocket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } finally {
+                                mSocket = null;
+                                mBTClient = null;
+                            }
                         }
                     }
+                }else{
+                    Toast.makeText(ActivityBluetooth.this, getString(R.string.fragment_bt_nodevice), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -118,12 +126,12 @@ public class ActivityBluetooth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mBTServer == null) {
-                    Toast.makeText(ActivityBluetooth.this, "Iniciando servidor BT", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityBluetooth.this, getString(R.string.bluetooth_server_start), Toast.LENGTH_LONG).show();
                     mBTServer = new AcceptThread();
                     mBTServer.start();
                     mServerButton.setText(getString(R.string.bluetooth_server_stop));
                 } else {
-                    Toast.makeText(ActivityBluetooth.this, "Parando servidor BT", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityBluetooth.this, getString(R.string.bluetooth_server_stop), Toast.LENGTH_LONG).show();
                     mBTServer.interrupt();
                     mBTServer = null;
                     try {
@@ -177,17 +185,19 @@ public class ActivityBluetooth extends AppCompatActivity {
                         line = line + "TELEPHONY ";
                     if (clase.hasService(BluetoothClass.Service.OBJECT_TRANSFER))
                         line = line + "OBJECT TRANSFER ";
+
+                    mDevices.add(device);
                     mArrayAdapter.add(line);
                     mArrayAdapter.notifyDataSetChanged();
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
                     //Ha comenzado la búsqueda
-                    Toast.makeText(ActivityBluetooth.this, "Iniciando búsqueda", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityBluetooth.this, getString(R.string.bluetooth_search_start), Toast.LENGTH_LONG).show();
                     mDeviceList.setBackgroundColor(Color.RED);
                 }
                 if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                     //Ha comenzado la búsqueda
-                    Toast.makeText(ActivityBluetooth.this, "Finalizando búsqueda", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ActivityBluetooth.this, getString(R.string.bluetooth_search_end), Toast.LENGTH_LONG).show();
                     mDeviceList.setBackgroundColor(Color.TRANSPARENT);
                 }
             }
@@ -367,6 +377,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 Log.e("ActivityBluetooth", e.getMessage());
             }
             mSocket = tmp;
+
         }
 
         public void run() {
@@ -381,6 +392,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 // Unable to connect; close the socket and get out
                 try {
                     mSocket.close();
+                    mSocket = null;
                 } catch (IOException closeException) {
                     Log.e("ActivityBluetooth", closeException.getMessage());
                 }
@@ -399,6 +411,8 @@ public class ActivityBluetooth extends AppCompatActivity {
             try {
                 mSocket.close();
             } catch (IOException e) {
+            } finally {
+                mSocket = null;
             }
         }
     }

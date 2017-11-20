@@ -26,12 +26,17 @@
     <string name="fragment_bt_error_nobt">El dispositivo no tiene una interfaz BlueTooth</string>
     <string name="fragment_bt_error_user">No se ha activado la interfaz Bluetooth</string>
     <string name="fragment_bt_title">Búsqueda de dispositivos BlueTooth</string>
+    <string name="fragment_bt_nodevice">El dispositivo no está disponible</string>
+    <string name="fragment_bt_pairing">Emparejando con </string>
+    <string name="fragment_bt_closing">Cerrando conexión con</string>
     <string name="fragment_bt_search">Buscar</string>
     <string name="fragment_bt_discovering">Calma, aún estoy mirando...</string>
 
     <string name="bluetooth_server_start">Iniciar servidor</string>
     <string name="bluetooth_server_stop">Parar servidor</string>
     <string name="bluetooth_send">Enviar</string>
+    <string name="bluetooth_search_start">Iniciando búsqueda</string>
+    <string name="bluetooth_search_end">Búsqueda finalizada</string>
 
 
     <string name="connectivity_scan">Buscar</string>
