@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.DataInputStream;
@@ -37,6 +38,7 @@ public class ActivityBluetooth extends AppCompatActivity {
     private BroadcastReceiver mReceiver = null;
     private BluetoothAdapter mBTadapter = null;
     private ListView mDeviceList = null;
+    private TextView mMessages= null;
     private ArrayAdapter<String> mArrayAdapter = null;
     private ArrayList<BluetoothDevice> mDevices=null;
     private Button mServerButton = null;
@@ -65,6 +67,8 @@ public class ActivityBluetooth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_bluetooth);
 
+        mMessages = (TextView)findViewById(R.id.bluetooth_messages);
+
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message inputMessage) {
@@ -74,6 +78,8 @@ public class ActivityBluetooth extends AppCompatActivity {
                     case MESSAGE_NEWBTDATA:
                         respuesta = inputMessage.getData().getString(MESSAGE_NEWBTDATA_ID);
                         Toast.makeText(getApplicationContext(), "Recibido : " + respuesta, Toast.LENGTH_LONG).show();
+                        String text = mMessages.getText()+"> "+respuesta+"\r\n";
+                        mMessages.setText(text);
                         break;
                 }
             }
@@ -81,6 +87,8 @@ public class ActivityBluetooth extends AppCompatActivity {
         };
 
 
+        Button search = (Button)findViewById(R.id.bluetooth_search);
+        search.requestFocus();
         mDevices = new ArrayList<BluetoothDevice>(1);
         mBTadapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -242,6 +250,8 @@ public class ActivityBluetooth extends AppCompatActivity {
                 }
                 if (!mBTadapter.isDiscovering()) {
                     mArrayAdapter.clear();
+                    mDevices.clear();
+                    mMessages.setText("");
                     mArrayAdapter.notifyDataSetChanged();
                     mBTadapter.startDiscovery();
 
