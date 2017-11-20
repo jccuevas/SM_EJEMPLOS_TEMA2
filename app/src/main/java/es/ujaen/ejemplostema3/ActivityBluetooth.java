@@ -77,7 +77,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 switch (inputMessage.what) {
                     case MESSAGE_NEWBTDATA:
                         respuesta = inputMessage.getData().getString(MESSAGE_NEWBTDATA_ID);
-                        Toast.makeText(getApplicationContext(), "Recibido : " + respuesta, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Recibido : " + respuesta, Toast.LENGTH_LONG).show();
                         String text = mMessages.getText()+"> "+respuesta+"\r\n";
                         mMessages.setText(text);
                         break;
