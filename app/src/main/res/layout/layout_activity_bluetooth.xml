@@ -93,8 +93,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetooth_search" />
 
-    <TextView
-        android:id="@+id/bluetooth_messages"
+    <ScrollView
+        android:id="@+id/bluetooth_scrooll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -106,7 +106,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        app:layout_constraintVertical_bias="0.6" />
-
+        app:layout_constraintVertical_bias="0.6">
+    <TextView
+        android:id="@+id/bluetooth_messages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+     />
+</ScrollView>
 
 </android.support.constraint.ConstraintLayout>
