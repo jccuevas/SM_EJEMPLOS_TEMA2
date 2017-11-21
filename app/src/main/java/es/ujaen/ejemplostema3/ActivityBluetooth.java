@@ -294,6 +294,7 @@ public class ActivityBluetooth extends AppCompatActivity {
             unregisterReceiver(mReceiver);
             mReceiver = null;
         }
+
     }
 
     /**
@@ -338,19 +339,21 @@ public class ActivityBluetooth extends AppCompatActivity {
                         new ConnectedThread(socket).start();
 
                         enviarMensajeBT(socket, "Bienvenido!");
-                        for (int n = 1; n <= 10; n++) {
-                            try {
-                                // Read from the InputStream
-                                enviarMensajeBT(socket, "Mensaje " + n);
-                                sleep(2000);
+//                        for (int n = 1; n <= 10; n++) {
+//                            try {
+//                                // Read from the InputStream
+//                                enviarMensajeBT(socket, "Mensaje " + n);
+//                                sleep(2000);
+//
+//                            } catch (InterruptedException e) {
+//                                break;
+//                            }
+//                        }
+//
+//                        socket.close();
 
-                            } catch (InterruptedException e) {
-                                break;
-                            }
-                        }
-
-                        socket.close();
-
+                        mBTClient = new ConnectedThread(socket);
+                        mBTClient.start();
                     }
                 } catch (IOException e) {
                     break;
@@ -409,7 +412,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 return;
             }
 
-            // Do work to manage the connection (in a separate thread)
+            // Hace el trabajo de la conexión en una hebra separada
             mBTClient = new ConnectedThread(mSocket);
             mBTClient.start();
         }
