@@ -50,7 +50,7 @@ public class ActivityBluetooth extends AppCompatActivity {
     public static final UUID SERVICIO_UUID = UUID.fromString("11000000-0011-1100-AAAA-0123456789AB");//Código en formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
 
-    private Handler mHandler = null;
+    private static Handler mHandler = null;
 
     public static final int MESSAGE_NEWBTDATA = 1;
     public static final String MESSAGE_NEWBTDATA_ID = "btmessage";
@@ -76,6 +76,8 @@ public class ActivityBluetooth extends AppCompatActivity {
                 // Obtiene el mensaje de la hebra de conexión.
                 switch (inputMessage.what) {
                     case MESSAGE_NEWBTDATA:
+                        mMessages = (TextView)findViewById(R.id.bluetooth_messages);
+
                         respuesta = inputMessage.getData().getString(MESSAGE_NEWBTDATA_ID);
                         //Toast.makeText(getApplicationContext(), "Recibido : " + respuesta, Toast.LENGTH_LONG).show();
                         String text = mMessages.getText()+"> "+respuesta+"\r\n";
