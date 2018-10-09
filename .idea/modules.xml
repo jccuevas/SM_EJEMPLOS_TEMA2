@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SM_EJEMPLOS_TEMA2.iml" filepath="$PROJECT_DIR$/.idea/SM_EJEMPLOS_TEMA2.iml" />
       <module fileurl="file://$PROJECT_DIR$/SM_EJEMPLOS_TEMA3.iml" filepath="$PROJECT_DIR$/SM_EJEMPLOS_TEMA3.iml" />
-      <module fileurl="file://C:\Users\usuario\AndroidStudioProjects\SM_EJEMPLOS_TEMA3\SM_EJEMPLOS_TEMA3.iml" filepath="C:\Users\usuario\AndroidStudioProjects\SM_EJEMPLOS_TEMA3\SM_EJEMPLOS_TEMA3.iml" />
-      <module fileurl="file://D:\Mis Documentos\Docencia\git\SSM\SM_EJEMPLOS_TEMA3\.idea\SM_EJEMPLOS_TEMA3.iml" filepath="D:\Mis Documentos\Docencia\git\SSM\SM_EJEMPLOS_TEMA3\.idea\SM_EJEMPLOS_TEMA3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Docencia/git/SSM/SM_EJEMPLOS_TEMA3/.idea/SM_EJEMPLOS_TEMA3.iml" filepath="$PROJECT_DIR$/../../Docencia/git/SSM/SM_EJEMPLOS_TEMA3/.idea/SM_EJEMPLOS_TEMA3.iml" />
+      <module fileurl="file://C:/Users/usuario/AndroidStudioProjects/SM_EJEMPLOS_TEMA3/SM_EJEMPLOS_TEMA3.iml" filepath="C:/Users/usuario/AndroidStudioProjects/SM_EJEMPLOS_TEMA3/SM_EJEMPLOS_TEMA3.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\usuario\AndroidStudioProjects\SM_EJEMPLOS_TEMA3\app\app.iml" filepath="C:\Users\usuario\AndroidStudioProjects\SM_EJEMPLOS_TEMA3\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:/Users/usuario/AndroidStudioProjects/SM_EJEMPLOS_TEMA3/app/app.iml" filepath="C:/Users/usuario/AndroidStudioProjects/SM_EJEMPLOS_TEMA3/app/app.iml" />
     </modules>
   </component>
 </project>
