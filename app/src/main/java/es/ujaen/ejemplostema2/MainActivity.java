@@ -11,7 +11,6 @@ import android.nfc.tech.NfcF;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,7 +23,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity
 
 
     //NFC
-
     private IntentFilter[] intentFiltersArray=null;
     private String[][] techListsArray=null;
     private NfcAdapter mAdapter;
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         Fragment f = mFM.findFragmentById(R.id.main_container);
         if (f == null) showHelpFragment();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,13 +72,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //NFC initialization
@@ -126,6 +123,20 @@ public class MainActivity extends AppCompatActivity
         ft.commit();
     }
 
+    public void showNFCFragment() {
+        FragmentTransaction ft = mFM.beginTransaction();
+        FragmentoNFC nfc = new FragmentoNFC();
+        Fragment f = mFM.findFragmentById(R.id.main_container);
+        if (f != null && !FragmentoAcercade.class.isInstance(f)) {
+            ft.remove(f);
+            ft.replace(R.id.main_container, nfc);
+        } else {
+            ft.add(R.id.main_container, nfc, "ABOUT");
+        }
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
     /**
      * Inicializar el Intent para cuando la actividad captura el evento ACTION_NDEF_DISCOVERED estando en primer plano
      */
@@ -153,7 +164,7 @@ public class MainActivity extends AppCompatActivity
      */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -188,6 +199,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_about:
                 showAboutFragment();
                 return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -228,9 +240,12 @@ public class MainActivity extends AppCompatActivity
                 //Opción mostrar fragmento de manejo de Bluetooth
                 showAboutFragment();
                 break;
+            case R.id.nav_nfc:
+                showNFCFragment();
+                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -292,65 +307,66 @@ public class MainActivity extends AppCompatActivity
      */
     private String analizaMensajes(Parcelable[] rawMsgs){
         NdefMessage msgs[];
-        String textmessages="";
+        StringBuffer textmessages = new StringBuffer();
         int n;
 
         msgs = new NdefMessage[rawMsgs.length];
 
-        for (int i = 0; i < rawMsgs.length; i++) {
+
+        //for (NdefMessage ndefMessage:(NdefMessage[])rawMsgs){
+        for(int i = 0; i < rawMsgs.length; i++) {
             msgs[i] = (NdefMessage) rawMsgs[i];
             NdefRecord ndefr[] = msgs[i].getRecords();
-            for (n = 0; n < ndefr.length; n++) {
 
-                if (ndefr[n].getTnf() == NdefRecord.TNF_MIME_MEDIA) {
-                    String mimetype = new String(ndefr[n].getType());
+            for (NdefRecord record: ndefr) {
+
+                if (record.getTnf() == NdefRecord.TNF_MIME_MEDIA) {
+                    String mimetype = new String(record.getType());
                     String textcontent = new String(
-                            ndefr[n].getPayload());
-                    textmessages = textmessages + "Message MIME="
+                            record.getPayload());
+                    textmessages.append("Message MIME="
                             + mimetype + "\r\nContent=" + textcontent
-                            + "\r\n";
+                            + "\r\n");
                 }
 
-                if (ndefr[n].getTnf() == NdefRecord.TNF_WELL_KNOWN) {
-                    String rtdtype = new String(ndefr[n].getType());
+                if (record.getTnf() == NdefRecord.TNF_WELL_KNOWN) {
+                    String rtdtype = new String(record.getType());
 
                     if (rtdtype.equals(new String(NdefRecord.RTD_TEXT))) {
 
-                        byte languagelen = (byte) ((ndefr[n]
+                        byte languagelen = (byte) ((record
                                 .getPayload()[0]) & 0x1f);
                         String country = new String(
-                                ndefr[n].getPayload(), 1, languagelen);
+                                record.getPayload(), 1, languagelen);
                         String textcontent = new String(
-                                ndefr[n].getPayload(), 1 + languagelen,
-                                ndefr[n].getPayload().length-1-languagelen);
+                                record.getPayload(), 1 + languagelen,
+                                record.getPayload().length-1-languagelen);
 
-                        textmessages = textmessages
-                                + "Message RTD_TEXT\r\nLanguage="
+                        textmessages.append("Message RTD_TEXT\r\nLanguage="
                                 + country + "\r\nContent="
-                                + textcontent + "\r\n";
+                                + textcontent + "\r\n");
                     }
                     if (rtdtype.equals(new String(NdefRecord.RTD_URI))) {
 
-                        byte languagelen = (byte) ((ndefr[n]
+                        byte languagelen = (byte) ((record
                                 .getPayload()[0]) & 0x1f);
                         String country = new String(
-                                ndefr[n].getPayload(), 1, languagelen);
+                                record.getPayload(), 1, languagelen);
                         String textcontent = new String(
-                                ndefr[n].getPayload(), 1 + languagelen,
-                                ndefr[n].getPayload().length-1-languagelen);
+                                record.getPayload(), 1 + languagelen,
+                                record.getPayload().length-1-languagelen);
 
-                        textmessages = textmessages
-                                + "Message RTD_TEXT\r\nLanguage="
+                        textmessages.append("Message RTD_TEXT\r\nLanguage="
                                 + country + "\r\nContent="
-                                + textcontent + "\r\n";
+                                + textcontent + "\r\n");
                     }
                 }
-                textmessages = "Number of records=" + n + "\r\n" + textmessages;
+                textmessages.insert(0,"Number of records=" + ndefr.length + "\r\n");
             }
 
         }
 
-        return textmessages;
+        return textmessages.toString();
 
     }
 

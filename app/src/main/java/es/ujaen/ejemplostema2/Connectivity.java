@@ -36,7 +36,7 @@ public class Connectivity extends AppCompatActivity {
         setContentView(R.layout.layout_activity_connectivity);
 
         // Setup UI
-        textStatus = (TextView) findViewById(R.id.connectivity_textView_result);
+        textStatus = findViewById(R.id.connectivity_textView_result);
 
         // Setup WiFi
         wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);

@@ -17,14 +17,14 @@ public class FragmentoInfo extends Fragment {
 
         View fragment = inflater.inflate(R.layout.layout_fragment_info, null);
 
-        WebView mInfo = (WebView) fragment.findViewById(R.id.fragmentinfo_helptext);
+        WebView mInfo = fragment.findViewById(R.id.fragmentinfo_helptext);
         mInfo.loadUrl("file:///android_asset/www/help.html");
         return fragment;
 
     }
 
     public void publica(CharSequence text) {
-        TextView t = (TextView) getActivity().findViewById(R.id.fragmentinfo_helptext);
+        TextView t = getActivity().findViewById(R.id.fragmentinfo_helptext);
         if (t != null) {
             t.setText(text);
         }

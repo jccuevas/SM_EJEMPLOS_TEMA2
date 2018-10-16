@@ -33,7 +33,7 @@ public class WiFiScanReceiver extends BroadcastReceiver {
             ScanResult bestSignal = null;
             String redes = "";
 
-            ViewGroup window = (ViewGroup) wifiDemo.findViewById(R.id.connectivity_wifipower);
+            ViewGroup window = wifiDemo.findViewById(R.id.connectivity_wifipower);
 
             if (results != null) {
                 if(results.size()>0) {
@@ -44,7 +44,7 @@ public class WiFiScanReceiver extends BroadcastReceiver {
                         final TableRow row = (TableRow) wifiDemo.getLayoutInflater().inflate(R.layout.listview_row_wifipower, null);
 
                         row.setTag(result.SSID + ":" + result.frequency);
-                        final ProgressBar power = (ProgressBar) row.findViewById(R.id.network_url_downloadprogress);
+                        final ProgressBar power = row.findViewById(R.id.network_url_downloadprogress);
                         Drawable draw = wifiDemo.getResources().getDrawable(R.drawable.progress_wifipower);
                         // set the drawable as progress bar
 
@@ -52,14 +52,14 @@ public class WiFiScanReceiver extends BroadcastReceiver {
                         power.setMax(100);
                         power.setProgress(100 + result.level);
 
-                        final TextView ssid = (TextView) row.findViewById(R.id.wifipower_ssid);
+                        final TextView ssid = row.findViewById(R.id.wifipower_ssid);
                         ssid.setText(result.SSID);
 
-                        final TextView dbm = (TextView) row.findViewById(R.id.wifipower_power);
+                        final TextView dbm = row.findViewById(R.id.wifipower_power);
 
                         dbm.setText(String.format(Locale.getDefault(),"%d dBm",result.level));
 
-                        final TextView mhz = (TextView) row.findViewById(R.id.wifipower_frecuency);
+                        final TextView mhz = row.findViewById(R.id.wifipower_frecuency);
                         mhz.setText(String.format(Locale.getDefault(),"%d MHz",result.frequency));
 
 

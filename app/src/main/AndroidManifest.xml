@@ -51,11 +51,6 @@
             android:screenOrientation="landscape" />
 
 
-        <activity
-            android:name=".NFCMainActivity"
-            android:label="@string/app_name">
-
-        </activity>
     </application>
 
 </manifest>

@@ -67,7 +67,7 @@ public class ActivityBluetooth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activity_bluetooth);
 
-        mMessages = (TextView)findViewById(R.id.bluetooth_messages);
+        mMessages = findViewById(R.id.bluetooth_messages);
 
         mHandler = new Handler() {
             @Override
@@ -76,7 +76,7 @@ public class ActivityBluetooth extends AppCompatActivity {
                 // Obtiene el mensaje de la hebra de conexión.
                 switch (inputMessage.what) {
                     case MESSAGE_NEWBTDATA:
-                        mMessages = (TextView)findViewById(R.id.bluetooth_messages);
+                        mMessages = findViewById(R.id.bluetooth_messages);
 
                         respuesta = inputMessage.getData().getString(MESSAGE_NEWBTDATA_ID);
                         //Toast.makeText(getApplicationContext(), "Recibido : " + respuesta, Toast.LENGTH_LONG).show();
@@ -89,12 +89,12 @@ public class ActivityBluetooth extends AppCompatActivity {
         };
 
 
-        Button search = (Button)findViewById(R.id.bluetooth_search);
+        Button search = findViewById(R.id.bluetooth_search);
         search.requestFocus();
         mDevices = new ArrayList<BluetoothDevice>(1);
         mBTadapter = BluetoothAdapter.getDefaultAdapter();
 
-        mDeviceList = (ListView) findViewById(R.id.bluetooth_list);
+        mDeviceList = findViewById(R.id.bluetooth_list);
         mArrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1);
         mDeviceList.setAdapter(mArrayAdapter);
@@ -131,7 +131,7 @@ public class ActivityBluetooth extends AppCompatActivity {
             }
         });
 
-        mServerButton = (Button) findViewById(R.id.bluetooth_server);
+        mServerButton = findViewById(R.id.bluetooth_server);
         mServerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,11 +158,11 @@ public class ActivityBluetooth extends AppCompatActivity {
             }
         });
 
-        Button enviar = (Button) findViewById(R.id.bluetooth_send);
+        Button enviar = findViewById(R.id.bluetooth_send);
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText texto = (EditText) findViewById(R.id.bluetooth_text);
+                EditText texto = findViewById(R.id.bluetooth_text);
                 String textoEnviar = texto.getEditableText().toString();
 
                 if (mBTClient != null) {

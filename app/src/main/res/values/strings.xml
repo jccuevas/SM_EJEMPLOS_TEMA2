@@ -62,4 +62,9 @@
     <string name="nfctastabout_about">NFCTest v1.0. Esta aplicación es parte del material docente de la asignatura de Servicios Móviles del Grado de Ingeniería Telemática de la Universidad de Jaén.</string>
     <string name="nfctestabout_textview_footer">Departamento de Ingeniería de Telecomunicación</string>
     <string name="nav_nfc_title">NFC</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nfcfragment_title">Empleo de NFC</string>
+    <string name="nefcfragment_text">Acerque una etiqueta NFC</string>
 </resources>
