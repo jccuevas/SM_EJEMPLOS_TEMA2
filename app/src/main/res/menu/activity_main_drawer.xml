@@ -9,6 +9,10 @@
             android:id="@+id/nav_wifipower"
             android:icon="@drawable/ic_menu_wifi"
             android:title="@string/nav_wifi_title" />
+        <item
+            android:id="@+id/nav_nfc"
+            android:icon="@drawable/ic_menu_nfc"
+            android:title="@string/nav_nfc_title" />
 
     </group>
 

@@ -1,4 +1,4 @@
-package es.ujaen.ejemplostema3;
+package es.ujaen.ejemplostema2;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;

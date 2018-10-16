@@ -1,4 +1,4 @@
-package es.ujaen.ejemplostema3;
+package es.ujaen.ejemplostema2;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
