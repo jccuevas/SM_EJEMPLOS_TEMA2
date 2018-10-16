@@ -31,11 +31,11 @@ import android.widget.Toast;
 public class Connectivity extends AppCompatActivity {
 
     private static final String TAG = "Connectivity";
-    public static final int REQUEST_COARSE_LOCATION = 1;
+    private static final int REQUEST_COARSE_LOCATION = 1;
     WifiManager wifi;
-    WiFiScanReceiver receiver;
+    private WiFiScanReceiver receiver;
 
-    TextView textStatus;
+    private TextView textStatus;
     Button buttonScan;
 
     @Override
@@ -108,9 +108,7 @@ public class Connectivity extends AppCompatActivity {
                 } else {
                    Toast.makeText(this, "El ejemplo de audio necesita del permiso para buscar redes", Toast.LENGTH_LONG).show();
                 }
-                return;
             }
-
             // other 'case' lines to check for other
             // permissions this app might request
         }
@@ -120,7 +118,7 @@ public class Connectivity extends AppCompatActivity {
         checkCoarseLocation();
     }
 
-    public void startScan(){
+    private void startScan(){
         Toast.makeText(
                 this,
                 this.getResources().getString(

@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -83,6 +82,20 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void showAboutFragment() {
+        FragmentTransaction ft = mFM.beginTransaction();
+        FragmentoAcercade about = new FragmentoAcercade();
+        Fragment f = mFM.findFragmentById(R.id.main_container);
+        if (f != null && !FragmentoAcercade.class.isInstance(f)) {
+            ft.remove(f);
+            ft.replace(R.id.main_container, about);
+        } else {
+            ft.add(R.id.main_container, about, "ABOUT");
+        }
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
 
     /**
      * Se controla el evento de pulsación de la tecla de volver, haciendo que si está abierto el
@@ -108,12 +121,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
-        boolean result = super.onCreateOptionsMenu(menu);
-
-        return result;
-
-
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -123,9 +131,13 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_help) {
-            showHelpFragment();
-            return true;
+        switch (id) {
+            case R.id.action_help:
+                showHelpFragment();
+                return true;
+            case R.id.action_about:
+                showAboutFragment();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -147,17 +159,26 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-        if (id == R.id.nav_bluetooth) {//Opción mostrar fragmento de manejo de Bluetooth
-            Intent btactivity= new Intent(this,ActivityBluetooth.class);
-            startActivity(btactivity);
+        switch (id) {
+            case R.id.nav_bluetooth:
+                //Opción mostrar fragmento de manejo de Bluetooth
+                Intent btactivity = new Intent(this, ActivityBluetooth.class);
+                startActivity(btactivity);
+                break;
+            case R.id.nav_wifipower:
+                //Opción mostrar fragmento de manejo de Bluetooth
+                Intent wifiactivity = new Intent(this, Connectivity.class);
+                startActivity(wifiactivity);
+                break;
+            case R.id.nav_help:
+                //Opción mostrar fragmento de manejo de Bluetooth
+                showHelpFragment();
+                break;
+            case R.id.nav_about:
+                //Opción mostrar fragmento de manejo de Bluetooth
+                showAboutFragment();
+                break;
         }
-        if (id == R.id.nav_wifipower) {//Opción mostrar fragmento de manejo de Bluetooth
-            Intent wifiactivity= new Intent(this,Connectivity.class);
-            startActivity(wifiactivity);
-        }
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -187,7 +208,6 @@ public class MainActivity extends AppCompatActivity
 //            // permissions this app might request
 //        }
 //    }
-
 
 
 }

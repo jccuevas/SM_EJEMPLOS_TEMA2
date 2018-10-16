@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ejemplos Tema 3</string>
+    <string name="app_name">Ejemplos Tema 2</string>
     <string name="app_author">Juan Carlos Cuevas Martínez</string>
     <string name="app_affiliaton">Dpto. Ingeniería de Telecomunicación\nUniversidad de Jaén</string>
 
@@ -12,7 +12,7 @@
     <string name="navbar_title">Ejemplos Tema 3</string>
     <string name="navbar_section_info">Información</string>
     <string name="navmenu_help">Ayuda</string>
-    <string name="navmenu_about">Acerca de...</string>
+    <string name="navmenu_about">Acerca de…</string>
     <string name="nav_bluetooth_title">Ejemplo de Bluetooth</string>
     <string name="nav_wifi_title">Ejemplo sobre WIFI</string>
     <string name="action_help">Ayuda</string>
@@ -30,7 +30,7 @@
     <string name="fragment_bt_pairing">Emparejando con </string>
     <string name="fragment_bt_closing">Cerrando conexión con</string>
     <string name="fragment_bt_search">Buscar</string>
-    <string name="fragment_bt_discovering">Calma, aún estoy mirando...</string>
+    <string name="fragment_bt_discovering">Calma, aún estoy mirando…</string>
 
     <string name="bluetooth_server_start">Iniciar servidor</string>
     <string name="bluetooth_server_stop">Parar servidor</string>
@@ -49,4 +49,5 @@
     <string name="wifipower_dbm">dBm</string>
     <string name="connectivity_search">Buscar redes</string>
     <string name="wifipower_hz">Hz</string>
+    <string name="bluetooth_hint_send">Mensaje a enviar</string>
 </resources>

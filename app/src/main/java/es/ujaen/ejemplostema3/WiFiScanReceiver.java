@@ -1,6 +1,7 @@
 package es.ujaen.ejemplostema3;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +11,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,7 +27,7 @@ public class WiFiScanReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context c, Intent intent) {
-        if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+        if (intent!=null && intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
 
             List<ScanResult> results = wifiDemo.wifi.getScanResults();
             ScanResult bestSignal = null;
@@ -56,10 +56,11 @@ public class WiFiScanReceiver extends BroadcastReceiver {
                         ssid.setText(result.SSID);
 
                         final TextView dbm = (TextView) row.findViewById(R.id.wifipower_power);
-                        dbm.setText(result.level + " dBm");
+
+                        dbm.setText(String.format(Locale.getDefault(),"%d dBm",result.level));
 
                         final TextView mhz = (TextView) row.findViewById(R.id.wifipower_frecuency);
-                        mhz.setText(result.frequency + " MHz");
+                        mhz.setText(String.format(Locale.getDefault(),"%d MHz",result.frequency));
 
 
                         if (bestSignal == null

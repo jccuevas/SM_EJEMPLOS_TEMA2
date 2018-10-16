@@ -53,8 +53,9 @@
     <EditText
         android:id="@+id/bluetooth_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:ems="10"
+        android:hint="@string/bluetooth_hint_send"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bluetooth_send"
@@ -72,7 +73,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/bluetooth_title"
-        app:layout_constraintTop_toTopOf="@+id/bluetooth_title" />
+        app:layout_constraintTop_toTopOf="@+id/bluetooth_title"
+        android:layout_marginRight="8dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
