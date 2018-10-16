@@ -45,11 +45,24 @@
                     tools:ignore="AppLinkUrlError" />
             </intent-filter>
         </activity>
-        <activity android:name="es.ujaen.ejemplostema2.ActivityBluetooth" />
-        <activity
-            android:name="es.ujaen.ejemplostema2.Connectivity"
-            android:screenOrientation="landscape" />
+        <activity android:name="es.ujaen.ejemplostema2.ActivityBluetooth"
+            android:parentActivityName=".MainActivity">
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name="es.ujaen.ejemplostema2.ActivityWifi"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".MainActivity">
+
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
 
     </application>
 

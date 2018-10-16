@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_wifipower:
                 //Opción mostrar fragmento de manejo de Bluetooth
-                Intent wifiactivity = new Intent(this, Connectivity.class);
+                Intent wifiactivity = new Intent(this, ActivityWifi.class);
                 startActivity(wifiactivity);
                 break;
             case R.id.nav_help:

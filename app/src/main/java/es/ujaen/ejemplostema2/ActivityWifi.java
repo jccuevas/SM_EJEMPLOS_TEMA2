@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +21,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Connectivity extends AppCompatActivity {
+public class ActivityWifi extends AppCompatActivity {
 
-    private static final String TAG = "Connectivity";
+    private static final String TAG = "ActivityWifi";
     private static final int REQUEST_COARSE_LOCATION = 1;
     WifiManager wifi;
     private WiFiScanReceiver receiver;
@@ -33,7 +34,13 @@ public class Connectivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_activity_connectivity);
+        setContentView(R.layout.layout_activity_wifi);
+
+        // Get a support ActionBar corresponding to the toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         // Setup UI
         textStatus = findViewById(R.id.connectivity_textView_result);
@@ -48,9 +55,10 @@ public class Connectivity extends AppCompatActivity {
         // List available networks
         List<WifiConfiguration> configs = wifi.getConfiguredNetworks();
 
-        for (WifiConfiguration config : configs) {
-            textStatus.append("\n\n" + config.toString());
-        }
+        if (configs != null)
+            for (WifiConfiguration config : configs) {
+                textStatus.append("\n\n" + config.toString());
+            }
 
         // Se registra el Broadcast Receiver para detectar
         //el final de la búsqueda de redes wifi
@@ -79,11 +87,10 @@ public class Connectivity extends AppCompatActivity {
                             new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                             REQUEST_COARSE_LOCATION);
                 }
-            }else
-            {
+            } else {
                 startScan();
             }
-        }else{
+        } else {
             startScan();
         }
     }
@@ -98,7 +105,7 @@ public class Connectivity extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startScan();
                 } else {
-                   Toast.makeText(this, "El ejemplo de audio necesita del permiso para buscar redes", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "El ejemplo de audio necesita del permiso para buscar redes", Toast.LENGTH_LONG).show();
                 }
             }
             // other 'case' lines to check for other
@@ -110,7 +117,7 @@ public class Connectivity extends AppCompatActivity {
         checkCoarseLocation();
     }
 
-    private void startScan(){
+    private void startScan() {
         Toast.makeText(
                 this,
                 this.getResources().getString(

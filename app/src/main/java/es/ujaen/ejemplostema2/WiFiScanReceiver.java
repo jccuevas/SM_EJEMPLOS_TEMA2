@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 public class WiFiScanReceiver extends BroadcastReceiver {
     private static final String TAG = "WiFiScanReceiver";
-    Connectivity wifiDemo;
+    ActivityWifi wifiDemo;
 
-    public WiFiScanReceiver(Connectivity wifiDemo) {
+    public WiFiScanReceiver(ActivityWifi wifiDemo) {
         super();
         this.wifiDemo = wifiDemo;
     }
